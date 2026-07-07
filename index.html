@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Soundboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .sound-btn {
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.1s, background-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .sound-btn:active {
+            transform: scale(0.95);
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🔊 Soundboard</h1>
+
+    <div class="grid">
+        <!-- Replace YOUR_FILE_ID_X with your actual Google Drive file IDs -->
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=18mtkSMsugpy6t6UVLo6chiGmP-U6YO-T')">🚨 J.U.N.K Alert</button>
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=142bZTAFHYb7txJ7MVgBR0zlKQtABEySF')">🧰 Screwdriver</button>
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=1NwU1OWunJ1YWDqHC_QK8CLT1Ul8raSFK')">🔌 Electric Zap</button>
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=1xGgkWIAILGuEO0H3py5mjeXmI6iS0uFT')">⚡ Electric Pop</button>
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=1sCzlSBlH2p5-yAm819JQIxLcJk5tvt_C')">🔨 Tinkering</button>
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=1JTD7fGz6F7aIAFqCDRcae6dtyp0J2OVX')">🔩 Repairing</button>
+        <button class="sound-btn" onclick="playSound('https://drive.google.com/uc?export=download&id=1nt5KRy1bII-GCblrwkW6r2X9Bp0ZCkro')">⌚ Time Travel</button>
+       
+    </div>
+
+    <script>
+        // Global audio object to handle playback
+        let currentAudio = null;
+
+        function playSound(url) {
+            // Stop current sound if one is already playing
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            // Create and play new audio
+            currentAudio = new Audio(url);
+            currentAudio.play().catch(error => {
+                console.error("Playback failed. Ensure files are publicly shared.", error);
+            });
+        }
+    </script>
+</body>
+</html>
